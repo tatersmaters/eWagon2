@@ -15,17 +15,23 @@ def error(text):
 class Deque():
 	def __init__(self):
 		self.deque = []
+	def lenerror(self):
+		if len(self.deque) == 0: error('Attempt to dequeue from empty deque.')
 	def feq(self, data):
 		self.deque.insert(0, int(data))
 	def fdq(self):
+		self.lenerror()
 		return self.deque.pop(0)
 	def fpeek(self):
+		self.lenerror()
 		return self.deque[0]
 	def beq(self, data):
 		self.deque.append(int(data))
 	def bdq(self):
+		self.lenerror()
 		return self.deque.pop(-1)
 	def bpeek(self):
+		self.lenerror()
 		return self.deque[-1]
 
 mq = Deque() # Main deque
@@ -84,13 +90,13 @@ def mul():
 
 def div():
 	argerror(2, '-')
-	if 0 in aq.deque[-1,-2]: error('Attempt to divide by zero.')
+	if 0 in aq.q: error('Attempt to divide by zero.')
 	if mode == 'back': mq.beq(aq.fdq() / aq.fdq())
 	elif mode == 'front': mq.feq(aq.fdq() / aq.fdq())
 
 def modulo():
 	argerror(2, '|')
-	if 0 in aq.deque[-1,-2]: error('Attempt to modulo by zero.')
+	if 0 in aq.q: error('Attempt to modulo by zero.')
 	if mode == 'back': mq.beq(aq.fdq() % aq.fdq())
 	elif mode == 'front': mq.feq(aq.fdq() % aq.fdq())
 
@@ -152,6 +158,13 @@ def numinput():
 	if mode == 'back': mq.beq(num)
 	elif mode == 'front': mq.feq(num)
 
+def strinput():
+	string = input()
+	if mode == 'back':
+		for i in string: mq.beq(ord(i))
+	elif mode == 'front':
+		for i in string: mq.feq(ord(i))
+
 def interpret():
 	global ip
 	while 1:
@@ -208,9 +221,10 @@ def interpret():
 		elif code[ip] == '@': printchar()
 		elif code[ip] == '!': showchar()
 		elif code[ip] == '&': numinput()
+		elif code[ip] == '?': strinput()
 		elif code[ip] == '.': exit()
 		ip += 1
-#		sleep(0.1) # Delay
+		# sleep(.1) # Delay
 
 load()
 # Run!

@@ -84,13 +84,13 @@ def mul():
 
 def div():
 	argerror(2, '-')
-	if 0 in aq.q: error('Attempt to divide by zero.')
+	if 0 in aq.deque[-1,-2]: error('Attempt to divide by zero.')
 	if mode == 'back': mq.beq(aq.fdq() / aq.fdq())
 	elif mode == 'front': mq.feq(aq.fdq() / aq.fdq())
 
 def modulo():
 	argerror(2, '|')
-	if 0 in aq.q: error('Attempt to modulo by zero.')
+	if 0 in aq.deque[-1,-2]: error('Attempt to modulo by zero.')
 	if mode == 'back': mq.beq(aq.fdq() % aq.fdq())
 	elif mode == 'front': mq.feq(aq.fdq() % aq.fdq())
 

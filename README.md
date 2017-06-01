@@ -1,2 +1,1 @@
-# eWagon2
-eWagon but it uses a deque
+For instructions, go to http://esolangs.org/wiki/EWagon.
